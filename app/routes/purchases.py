@@ -5,6 +5,7 @@ from configs.db import get_db
 
 from services.purchases import Stock as StockService
 from schemas.purchases import Stock as StockSchema
+from rabbitmq.purchases_queue import send_log_to_queue
 
 router = APIRouter(
     prefix='/stock',
@@ -17,20 +18,25 @@ router = APIRouter(
 
 @router.get('/')
 async def all(db: Session = Depends(get_db)):
+    send_log_to_queue('Queried all the purchases')
     return StockService.all(db)
 
 @router.get('/{id}')
 async def show(id: int, db: Session = Depends(get_db)):
+    send_log_to_queue('Queried a purchase')
     return StockService.show(id, db)
 
 @router.post('/')
 async def create(request: StockSchema, db: Session = Depends(get_db)):
+    send_log_to_queue('Created a purchase')
     return StockService.create(request, db)
 
 @router.put('/{id}')
 async def edit(id: int, request: StockSchema, db: Session = Depends(get_db)):
+    send_log_to_queue('Edited a purchase')
     return StockService.update(id, request, db)
 
-@router.delete('/{id}', status_code = 200)
-async def delete(id: int, db: Session = Depends(get_db)):
-    return StockService.delete(id, db)
+# @router.delete('/{id}', status_code = 200)
+# async def delete(id: int, db: Session = Depends(get_db)):
+#     send_log_to_queue('Deleted a purchase')
+#     return StockService.delete(id, db)
