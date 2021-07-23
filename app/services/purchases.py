@@ -1,8 +1,8 @@
-from models import stock
+from models import purchases
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
-from schemas.stock import Stock as StockSchema
-from models.stock import Stock as StockModel
+from schemas.purchases import Stock as StockSchema
+from models.purchases import Stock as StockModel
 
 class Stock:
     @staticmethod

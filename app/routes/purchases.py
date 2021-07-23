@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 
 from configs.db import get_db
 
-from services.stock import Stock as StockService
-from schemas.stock import Stock as StockSchema
+from services.purchases import Stock as StockService
+from schemas.purchases import Stock as StockSchema
 
 router = APIRouter(
     prefix='/stock',
@@ -23,7 +23,7 @@ async def all(db: Session = Depends(get_db)):
 async def show(id: int, db: Session = Depends(get_db)):
     return StockService.show(id, db)
 
-@router.post('/{id}')
+@router.post('/')
 async def create(request: StockSchema, db: Session = Depends(get_db)):
     return StockService.create(request, db)
 
