@@ -1,26 +1,21 @@
 from fastapi import FastAPI
 from sqlalchemy import engine
-from purchases_configs.db import get_db, engine, Base
 from routes import purchases
 from fastapi.middleware.cors import CORSMiddleware
-
-#models
 from models.purchases import Stock
+from configurations.db import engine, Base
 
 # create all tables
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind = engine)
 
 # drop all tables
 # Base.metadata.drop_all(bind=engine)
 
-# routes
-from routes import (purchases)
-
 app = FastAPI(
-    title='Duka Purchases Service',
-    version='0.0.1',
-    description='endpoints for the purchases service of the Duka platform',
-    redoc_url='/',
+    title = 'Duka Purchases Service',
+    version = '0.0.1',
+    description = 'endpoints for the purchases service of the Duka platform',
+    redoc_url = '/',
 )
 
 # setup the origins

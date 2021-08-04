@@ -1,15 +1,15 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from purchases_configs.db import get_db
+from configurations.db import get_db
 
 from services.purchases import Stock as StockService
 from schemas.purchases import Stock as StockSchema
 from rabbitmq.purchases_queue import send_log_to_queue
 
 router = APIRouter(
-    prefix='/stock',
-    tags=['Stock'],
+    prefix='/purchases',
+    tags=['Purchases'],
     responses={200:{'description':'OK'}, 
                201:{'description':'Created'},
                400:{'description':'Bad Request'},
