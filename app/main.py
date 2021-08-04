@@ -1,11 +1,32 @@
 from fastapi import FastAPI
 from sqlalchemy import engine
-from purchases_configs.db import engine, Base
+# from purchases_configs.db import engine, Base
 from routes import purchases
 from fastapi.middleware.cors import CORSMiddleware
 
 #models
 from models.purchases import Stock
+
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+# SQLALCHEMY_DATABASE_URL = "postgresql://postgres:1234@localhost:5432/duka_stock"
+SQLALCHEMY_DATABASE_URL = "postgresql://duka:duka@2021@172.17.0.1:5432/purchases"
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+# dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 # create all tables
 Base.metadata.create_all(bind=engine)
