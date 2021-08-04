@@ -1,7 +1,7 @@
 import pika
 
-credentials = pika.PlainCredentials('guest', 'guest')
-parameters = pika.ConnectionParameters(host='127.0.0.1',port=5672, credentials=credentials,heartbeat=0)
+credentials = pika.PlainCredentials('duka', 'Fuckyou31')
+parameters = pika.ConnectionParameters(host='138.68.189.32',port=5672, credentials=credentials,heartbeat=0)
 connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 
