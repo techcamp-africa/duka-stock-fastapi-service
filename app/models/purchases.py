@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql.expression import true
-from configs.db import Base
+from purchases_configs.db import Base
 from datetime import datetime
 from sqlalchemy import func
 

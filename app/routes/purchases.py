@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from configs.db import get_db
+from purchases_configs.db import get_db
 
 from services.purchases import Stock as StockService
 from schemas.purchases import Stock as StockSchema

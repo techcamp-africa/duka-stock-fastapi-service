@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from sqlalchemy import engine
-from configs.db import engine, Base
+from purchases_configs.db import engine, Base
 from routes import purchases
 from fastapi.middleware.cors import CORSMiddleware
 
