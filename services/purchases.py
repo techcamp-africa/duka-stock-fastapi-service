@@ -23,7 +23,7 @@ class Stock:
     @staticmethod
     def create(request: StockSchema, db: Session):
         new_stock_item = PurchaseModel(
-            quantity=request.quantity, inv_id=request.inv_id, user_id=request.user_id)
+            quantity=request.quantity, inv_id=request.inv_id, uid=request.uid)
         db.add(new_stock_item)
         db.commit()
         db.refresh(new_stock_item)

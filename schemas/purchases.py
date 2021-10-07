@@ -5,7 +5,7 @@ from datetime import datetime
 class Stock(BaseModel):
     quantity: int
     inv_id: int   
-    user_id: int
+    uid: str
 
     class Config():
         orm_mode = True
@@ -13,7 +13,7 @@ class Stock(BaseModel):
 class StockCreate(Stock):
     quantity: int
     inventory_id: int
-    user_id: int
+    uid: str
     created_at: Optional[datetime]
     updated_at: Optional[datetime]
 

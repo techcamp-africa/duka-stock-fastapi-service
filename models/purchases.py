@@ -10,6 +10,6 @@ class Purchases(Base):
     id = Column(Integer, primary_key = True, index = True)
     quantity = Column(Integer)
     inv_id = Column(Integer)    
-    user_id = Column(Integer)    
+    uid = Column(String)    
     created_at = Column(DateTime(timezone=True), default=func.now(), nullable=False)
-    updated_at = Column(nullable=True)
+    updated_at = Column(String,nullable=True)
