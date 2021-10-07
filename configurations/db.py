@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from configurations.base_config import settings
 
 #create an engine
-engine = create_engine(settings.SQLALCHEMY_DATABASE_URI, echo = True)
+engine = create_engine(settings.SQLALCHEMY_DATABASE_URI, connect_args={"check_same_thread": False})
 
 # SQLALCHEMY_DATABASE_URL = "postgresql://postgres:1234@localhost:5432/duka_stock"
 

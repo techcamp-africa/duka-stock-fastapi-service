@@ -4,7 +4,7 @@ from configurations.db import Base
 from datetime import datetime
 from sqlalchemy import func
 
-class Stock(Base):
+class Purchases(Base):
     __tablename__ = 'stocks'
     
     id = Column(Integer, primary_key = True, index = True)
@@ -12,4 +12,4 @@ class Stock(Base):
     inv_id = Column(Integer)    
     user_id = Column(Integer)    
     created_at = Column(DateTime(timezone=True), default=func.now(), nullable=False)
-    updated_at = Column(DateTime(timezone=True), default=func.now(), nullable=False)
+    updated_at = Column(nullable=True)

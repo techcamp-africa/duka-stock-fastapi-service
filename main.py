@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from sqlalchemy import engine
 from routes import purchases
 from fastapi.middleware.cors import CORSMiddleware
-from models.purchases import Stock
+from models.purchases import Purchases
 from configurations.db import engine, Base
 
 # create all tables

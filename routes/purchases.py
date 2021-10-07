@@ -21,10 +21,11 @@ async def all(db: Session = Depends(get_db)):
     send_log_to_queue('Queried all the purchases')
     return StockService.all(db)
 
-@router.get('/{id}')
-async def show(id: int, db: Session = Depends(get_db)):
-    send_log_to_queue('Queried a purchase')
-    return StockService.show(id, db)
+# quering purchases with inventory id
+@router.get('/{inv_id}')
+async def show(Inv_id: int, db: Session = Depends(get_db)):
+    send_log_to_queue('Queried  purchases with inv id')
+    return StockService.show_puchases_for_Inventory(inv_id=Inv_id, db=db)
 
 @router.post('/')
 async def create(request: StockSchema, db: Session = Depends(get_db)):
