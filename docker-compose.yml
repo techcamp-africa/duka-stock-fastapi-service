@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  purchases:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 
+
+   
+    ports:
+      - 9800:8000
+    restart: unless-stopped
