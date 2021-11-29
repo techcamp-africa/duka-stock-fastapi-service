@@ -23,7 +23,7 @@ class Stock:
 
 # quering with UID
     @staticmethod
-    def show_puchases_for_Inventory_with_UID(uid: string, db: Session):
+    def show_puchases_for_Inventory_with_UID(uid:str, db: Session):
         stock_item_to_show = db.query(PurchaseModel).filter(
             PurchaseModel.uid == uid).all()
 
