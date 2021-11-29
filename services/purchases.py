@@ -20,6 +20,19 @@ class Stock:
 
         return stock_item_to_show
 
+
+# quering with UID
+    @staticmethod
+    def show_puchases_for_Inventory_with_UID(uid: string, db: Session):
+        stock_item_to_show = db.query(PurchaseModel).filter(
+            PurchaseModel.uid == uid).all()
+
+        return stock_item_to_show
+
+
+
+
+
     @staticmethod
     def create(request: StockSchema, db: Session):
         new_stock_item = PurchaseModel(

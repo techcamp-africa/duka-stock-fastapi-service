@@ -27,6 +27,14 @@ async def show(Inv_id: int, db: Session = Depends(get_db)):
     send_log_to_queue('Queried  purchases with inv id')
     return StockService.show_puchases_for_Inventory(inv_id=Inv_id, db=db)
 
+# quering purchases with inventory UID
+@router.get('/{uid:string}')
+async def show(uid: string, db: Session = Depends(get_db)):
+    send_log_to_queue(f'Queried  purchases with UID {uid}')
+    return StockService.show_puchases_for_Inventory_with_UID(uid=uid, db=db)
+
+
+
 @router.post('/')
 async def create(request: StockSchema, db: Session = Depends(get_db)):
     send_log_to_queue('Created a purchase')
