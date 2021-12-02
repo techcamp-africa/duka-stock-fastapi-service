@@ -3,35 +3,44 @@ from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 from schemas.purchases import Stock as StockSchema
 from models.purchases import Purchases as PurchaseModel
+from sqlalchemy import and_
 
 
 class Stock:
     @staticmethod
     def all(db: Session):
         all_stock_items = db.query(PurchaseModel).all()
-
         return all_stock_items
-# change this to inventory id
 
     @staticmethod
     def show_puchases_for_Inventory(inv_id: int, db: Session):
         stock_item_to_show = db.query(PurchaseModel).filter(
             PurchaseModel.inv_id == inv_id).all()
-
         return stock_item_to_show
 
 
-# quering with UID
+# quering with UID AND INV ID
+
+
     @staticmethod
-    def show_puchases_for_Inventory_with_UID(uid:str, db: Session):
+    def show_puchases_for_Inventory_and_UID(inv_id: int, uid:str,  db: Session):
+        print(f" inv ID:{inv_id}  UID:{uid}")
+        purchases_for_INVID_UID = db.query(PurchaseModel).filter(
+            and_(PurchaseModel.inv_id == inv_id, PurchaseModel.uid == uid)).all()
+        return purchases_for_INVID_UID
+
+
+
+
+
+# quering with UID
+
+    @staticmethod
+    def show_puchases_for_Inventory_with_UID(uid: str, db: Session):
         stock_item_to_show = db.query(PurchaseModel).filter(
             PurchaseModel.uid == uid).all()
 
         return stock_item_to_show
-
-
-
-
 
     @staticmethod
     def create(request: StockSchema, db: Session):
